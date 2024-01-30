@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+  swarm:
+    image: 355982936287.dkr.ecr.us-east-2.amazonaws.com/image_processor
+    hostname: "{{.Node.Hostname}}"
+    ports:
+      - 8070:8070
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 1s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.job==ocr
+    command: ["go", "run", "main.go"]

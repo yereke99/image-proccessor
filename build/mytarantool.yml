@@ -1,0 +1,4 @@
+---
+memtx_dir: /opt/homebrew/bin/tarantool/myapp
+listen:
+  - 3301:127.0.0.1
